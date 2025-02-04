@@ -31,4 +31,4 @@ jobs:
         with:
           personal_token: ${{ secrets.GH_TOKEN }} # Verwendet das GitHub Token
           branch: gh-pages # Der Branch, auf dem die Website gehostet wird
-          folder: ./dist # Der Ordner, der die gebauten Dateien enthält (in der Regel "dist")
+          publish_dir: ./dist # Der Ordner, der die gebauten Dateien enthält (in der Regel "dist")
