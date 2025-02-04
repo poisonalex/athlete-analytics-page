@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Der Branch, der das Deployment auslöst (z. B. 'main')
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16" # Die Node.js-Version, die du verwendest
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build the project
+        run: |
+          npm run build  # Kompiliert deine Vue.js-App mit Vite
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }} # Verwendet das GitHub Token
+          branch: gh-pages # Der Branch, auf dem die Website gehostet wird
+          folder: dist # Der Ordner, der die gebauten Dateien enthält (in der Regel "dist")
